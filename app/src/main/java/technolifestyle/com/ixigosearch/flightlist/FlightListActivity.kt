@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_flight_list.*
 import technolifestyle.com.ixigosearch.R
-import timber.log.Timber
 
 class FlightListActivity : AppCompatActivity() {
 
     private lateinit var flightListViewModel: FlightListViewModel
+    private lateinit var flightListAdapter: FlightListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +22,18 @@ class FlightListActivity : AppCompatActivity() {
 
         flightListViewModel.fetchFlightDetails()
 
+        setupFlightRecyclerView()
+
         flightListViewModel.flightDetails.observe(this, Observer {
-            Timber.d("LiveData: $it")
+            flightListAdapter.addAll(it?.flightList)
         })
+    }
+
+    private fun setupFlightRecyclerView() {
+        flightListAdapter = FlightListAdapter()
+        flightListRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@FlightListActivity)
+            adapter = flightListAdapter
+        }
     }
 }
