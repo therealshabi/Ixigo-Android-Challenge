@@ -1,22 +1,21 @@
 package technolifestyle.com.ixigosearch.flightlist.models
 
+import com.google.gson.JsonElement
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 object FlightModel {
 
     data class FlightDetails(
         @SerializedName("appendix")
-        val appendix: Appendix,
+        val appendix: JsonElement? = null,
         @SerializedName("flights")
-        val flightList: List<Flight>
+        val flightList: List<Flight> = ArrayList()
     )
 
     data class Appendix(
-        @SerializedName("airlines")
         val airlines: Airlines,
-        @SerializedName("airports")
         val airports: Airports,
-        @SerializedName("providers")
         val providers: Providers
     )
 
