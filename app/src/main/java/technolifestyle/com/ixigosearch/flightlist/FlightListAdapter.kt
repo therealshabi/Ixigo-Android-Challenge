@@ -6,15 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.flight_item.view.*
 import technolifestyle.com.ixigosearch.R
-import technolifestyle.com.ixigosearch.flightlist.models.response.FlightModel
-import technolifestyle.com.ixigosearch.utils.HelperUtil.getDuration
-import technolifestyle.com.ixigosearch.utils.HelperUtil.getTime
+import technolifestyle.com.ixigosearch.flightlist.models.Flight
 
 class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolder>() {
 
-    private val flightList: ArrayList<FlightModel.Flight> = ArrayList()
+    private val flightList: ArrayList<Flight> = ArrayList()
 
-    fun addAll(flights: List<FlightModel.Flight>?) {
+    fun addAll(flights: List<Flight>?) {
         if (flights == null) {
             return
         }
@@ -42,13 +40,12 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
             flightClassTextView.text = flightList[position].`class`
             flightTimeTextView.text = holder.itemView.context.getString(
                 R.string.time_text,
-                getTime(flightList[position].departureTime),
-                getTime(flightList[position].arrivalTime)
+                flightList[position].departureTime,
+                flightList[position].arrivalTime
             )
-            flightDurationTextView.text =
-                getDuration(flightList[position].arrivalTime, flightList[position].departureTime)
+            flightDurationTextView.text = flightList[position].duration
             flightBestPriceTextView.text = holder.itemView.context.getString(
-                R.string.best_price, "5432"
+                R.string.best_price, flightList[position].bestPrice
             )
         }
     }
