@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_flight_list.*
 import technolifestyle.com.ixigosearch.R
+import technolifestyle.com.ixigosearch.utils.HelperUtil
+import timber.log.Timber
 
 class FlightListActivity : AppCompatActivity() {
 
@@ -54,6 +56,14 @@ class FlightListActivity : AppCompatActivity() {
         flightListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@FlightListActivity)
             adapter = flightListAdapter
+        }
+    }
+
+    fun sortFlightDetails(sortType: HelperUtil.SortType) {
+        when(sortType) {
+            HelperUtil.SortType.CHEAPEST -> Timber.d("Cheapest")
+            HelperUtil.SortType.FASTEST -> Timber.d("Fastest")
+            HelperUtil.SortType.EARLIEST -> Timber.d("Earliest")
         }
     }
 }

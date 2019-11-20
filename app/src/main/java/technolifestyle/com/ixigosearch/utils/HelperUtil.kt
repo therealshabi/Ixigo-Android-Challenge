@@ -19,4 +19,10 @@ object HelperUtil {
         val diffHours: Long = diff / (60 * 60 * 1000) % 24
         return "${diffHours}h ${diffMinutes}m"
     }
+
+    enum class SortType {
+        CHEAPEST,
+        EARLIEST,
+        FASTEST
+    }
 }
