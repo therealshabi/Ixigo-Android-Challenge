@@ -60,10 +60,6 @@ class FlightListActivity : AppCompatActivity() {
     }
 
     fun sortFlightDetails(sortType: HelperUtil.SortType) {
-        when(sortType) {
-            HelperUtil.SortType.CHEAPEST -> Timber.d("Cheapest")
-            HelperUtil.SortType.FASTEST -> Timber.d("Fastest")
-            HelperUtil.SortType.EARLIEST -> Timber.d("Earliest")
-        }
+        flightListViewModel.sortFlightDetails(sortType)
     }
 }

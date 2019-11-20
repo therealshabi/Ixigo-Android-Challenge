@@ -9,6 +9,7 @@ import retrofit2.Response
 import technolifestyle.com.ixigosearch.flightlist.models.Flight
 import technolifestyle.com.ixigosearch.flightlist.models.FlightDetails
 import technolifestyle.com.ixigosearch.flightlist.models.response.FlightModel
+import technolifestyle.com.ixigosearch.utils.HelperUtil
 import technolifestyle.com.ixigosearch.utils.HelperUtil.getDuration
 import technolifestyle.com.ixigosearch.utils.HelperUtil.getTime
 import technolifestyle.com.ixigosearch.utils.NetworkUtil
@@ -77,5 +78,23 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
             )
         }
         return flightList
+    }
+
+    fun sortFlightDetails(sortType: HelperUtil.SortType) {
+        when (sortType) {
+            HelperUtil.SortType.CHEAPEST -> {
+                flightDetails.value =
+                    FlightDetails((flightDetails.value as FlightDetails).appendix,
+                        (flightDetails.value as FlightDetails).flightList.sortedBy {
+                            it.bestPrice
+                        })
+            }
+            HelperUtil.SortType.FASTEST -> {
+
+            }
+            HelperUtil.SortType.EARLIEST -> {
+
+            }
+        }
     }
 }
