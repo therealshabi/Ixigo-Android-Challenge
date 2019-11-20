@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Cheapest" />
+        android:text="@string/cheapest_radio_button_text" />
 
     <RadioButton
         android:id="@+id/earliestSortButton"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Earliest" />
+        android:text="@string/earliest_radio_button_text" />
 
     <RadioButton
         android:id="@+id/fastestSortButton"
@@ -28,5 +28,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Fastest" />
+        android:text="@string/fastest_radio_button_text" />
 </RadioGroup>

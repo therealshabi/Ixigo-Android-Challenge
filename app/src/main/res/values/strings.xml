@@ -4,4 +4,8 @@
     <string name="time_text">%1$s ➝ %2$s</string>
     <string name="source_destination_text">%1$s ➝ %2$s</string>
     <string name="price">₹%1$d</string>
+    <string name="cheapest_radio_button_text">Cheapest</string>
+    <string name="earliest_radio_button_text">Earliest</string>
+    <string name="fastest_radio_button_text">Fastest</string>
+    <string name="sort_menu_title">SORT</string>
 </resources>
