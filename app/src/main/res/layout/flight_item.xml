@@ -8,10 +8,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true"
-        android:layout_height="wrap_content">
+        android:focusable="true">
 
         <LinearLayout
             android:id="@+id/flightImageContainer"
@@ -20,10 +20,9 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toStartOf="@id/mainDetailContainer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
@@ -59,7 +58,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toStartOf="@id/flightBestPriceTextView"
             app:layout_constraintStart_toEndOf="@id/flightImageContainer"
             app:layout_constraintTop_toTopOf="parent">
@@ -103,10 +102,19 @@
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="₹5696" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#757575"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
