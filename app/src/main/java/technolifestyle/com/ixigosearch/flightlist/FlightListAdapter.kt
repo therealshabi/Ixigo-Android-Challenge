@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.flight_item.view.*
+import kotlinx.android.synthetic.main.provider_item.view.*
 import technolifestyle.com.ixigosearch.R
 import technolifestyle.com.ixigosearch.flightlist.models.Flight
 
@@ -37,21 +38,32 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
 
     override fun onBindViewHolder(holder: FlightViewHolder, position: Int) {
         holder.itemView.apply {
-            flightClassTextView.text = flightList[position].`class`
-            flightTimeTextView.text = holder.itemView.context.getString(
-                R.string.time_text,
-                flightList[position].departureTime,
-                flightList[position].arrivalTime
-            )
-            flightNameTextView.text = flightList[position].airline
-            airportInfoTextView.text = holder.itemView.context.getString(
-                R.string.source_destination_text, flightList[position].originCode,
-                flightList[position].destinationCode
-            )
-            flightDurationTextView.text = flightList[position].duration
-            flightBestPriceTextView.text = holder.itemView.context.getString(
-                R.string.best_price, flightList[position].bestPrice
-            )
+            flightList[position].apply {
+                flightClassTextView.text = `class`
+                flightTimeTextView.text = holder.itemView.context.getString(
+                    R.string.time_text,
+                    departureTime,
+                    arrivalTime
+                )
+                flightNameTextView.text = airline
+                airportInfoTextView.text = holder.itemView.context.getString(
+                    R.string.source_destination_text, originCode,
+                    destinationCode
+                )
+                flightDurationTextView.text = duration
+                flightBestPriceTextView.text = holder.itemView.context.getString(
+                    R.string.price, bestPrice
+                )
+                val inflater = LayoutInflater.from(holder.itemView.context)
+                fares.entries.forEach { (providerName, fare) ->
+                    val providerView =
+                        inflater.inflate(R.layout.provider_item, providerDetails, false)
+                    providerView.providerNameTextView.text = providerName
+                    providerView.providerFareTextView.text = holder.itemView.context.getString(
+                        R.string.price, fare)
+                    providerDetails.addView(providerView)
+                }
+            }
         }
     }
 
