@@ -18,15 +18,27 @@ class FlightListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_flight_list)
 
         flightListViewModel = ViewModelProviders.of(this).get(
-            FlightListViewModel::class.java)
+            FlightListViewModel::class.java
+        )
 
         flightListViewModel.fetchFlightDetails()
 
         setupFlightRecyclerView()
 
+        setupBottomNavigation()
+
         flightListViewModel.flightDetails.observe(this, Observer {
             flightListAdapter.addAll(it?.flightList)
         })
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.sortItem -> SortBottomSheetFragment().show(supportFragmentManager, "Sort")
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 
     private fun setupFlightRecyclerView() {
