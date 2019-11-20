@@ -33,11 +33,22 @@
                 android:src="@drawable/ic_plane" />
 
             <TextView
-                android:id="@+id/flightClassTextView"
+                android:id="@+id/flightNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_plane"
+                android:textColor="#741152"
+                tools:text="Spicejet" />
+
+            <TextView
+                android:id="@+id/flightClassTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:src="@drawable/ic_plane"
+                android:textSize="12sp"
                 tools:text="Business" />
         </LinearLayout>
 
@@ -54,13 +65,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/airportNameTextView"
+                android:id="@+id/airportInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:text="@string/del_mum_dummy_text" />
+                tools:text="DEL ➝ MUM" />
 
             <TextView
                 android:id="@+id/flightTimeTextView"

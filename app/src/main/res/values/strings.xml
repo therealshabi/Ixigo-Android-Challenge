@@ -2,6 +2,6 @@
     <string name="app_name">Ixigo Search</string>
 
     <string name="time_text">%1$s ➝ %2$s</string>
-    <string name="del_mum_dummy_text">DEL ➝ MUM</string>
+    <string name="source_destination_text">%1$s ➝ %2$s</string>
     <string name="best_price">₹%1$d</string>
 </resources>

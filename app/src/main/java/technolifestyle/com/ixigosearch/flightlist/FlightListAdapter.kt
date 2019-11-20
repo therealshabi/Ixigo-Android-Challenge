@@ -43,6 +43,11 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                 flightList[position].departureTime,
                 flightList[position].arrivalTime
             )
+            flightNameTextView.text = flightList[position].airline
+            airportInfoTextView.text = holder.itemView.context.getString(
+                R.string.source_destination_text, flightList[position].originCode,
+                flightList[position].destinationCode
+            )
             flightDurationTextView.text = flightList[position].duration
             flightBestPriceTextView.text = holder.itemView.context.getString(
                 R.string.best_price, flightList[position].bestPrice
