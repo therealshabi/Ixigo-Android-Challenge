@@ -9,14 +9,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flightListRecyclerView"
         android:layout_width="match_parent"
-        tools:listitem="@layout/flight_item"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/flight_item" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimary"
-        app:hideOnScroll="true" />
+        android:alpha="0.8"
+        app:backgroundTint="@android:color/black"
+        app:contentInsetStart="0dp"
+        app:hideOnScroll="true"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:itemRippleColor="@android:color/darker_gray"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        app:menu="@menu/quick_options" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
