@@ -6,8 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import technolifestyle.com.ixigosearch.flightlist.models.*
+import technolifestyle.com.ixigosearch.flightlist.models.Flight
+import technolifestyle.com.ixigosearch.flightlist.models.FlightDetails
 import technolifestyle.com.ixigosearch.flightlist.models.response.FlightModel
+import technolifestyle.com.ixigosearch.utils.HelperUtil.getDuration
+import technolifestyle.com.ixigosearch.utils.HelperUtil.getTime
 import technolifestyle.com.ixigosearch.utils.NetworkUtil
 import timber.log.Timber
 
@@ -36,21 +39,39 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
     private fun parseResponse(response: Response<FlightModel.FlightApiResponse>): FlightDetails? {
         var flightDetails: FlightDetails? = null
         response.body()?.let {
-            val airlineList = it.appendix.asJsonObject.get("airlines").asJsonObject.entrySet()
-                .map { (code, name) ->
-                    Airline(code, name.asString)
-                }
-            val airportList = it.appendix.asJsonObject.get("airports").asJsonObject.entrySet()
-                .map { (code, name) ->
-                    Airport(code, name.asString)
-                }
-            val providerList = it.appendix.asJsonObject.get("providers").asJsonObject.entrySet()
-                .map { (id, name) ->
-                    Provider(id, name.asString)
-                }
-            val appendix = Appendix(airlineList, airportList, providerList)
-            flightDetails = FlightDetails(appendix, it.flightList)
+            val flightData = getFlightData(it.flightInfo, it.appendix)
+            flightDetails = FlightDetails(it.appendix, flightData)
         }
         return flightDetails
+    }
+
+    private fun getFlightData(
+        flightInfo: List<FlightModel.FlightInfo>, appendix: FlightModel.Appendix
+    ): List<Flight> {
+        val flightList: ArrayList<Flight> = ArrayList()
+        flightInfo.forEach {
+            val fareMap: HashMap<String, Int> = HashMap()
+            var bestPrice: Int = Integer.MAX_VALUE
+            it.fareList.forEach { fare ->
+                fareMap[appendix.providers[fare.providerId]!!] = fare.price
+                if (fare.price < bestPrice) {
+                    bestPrice = fare.price
+                }
+            }
+            flightList.add(
+                Flight(
+                    it.originCode,
+                    it.destinationCode,
+                    getTime(it.departureTime),
+                    getTime(it.arrivalTime),
+                    getDuration(it.departureTime, it.arrivalTime),
+                    fareMap,
+                    appendix.airlines[it.airlineCode]!!,
+                    it.`class`,
+                    bestPrice
+                )
+            )
+        }
+        return flightList
     }
 }
