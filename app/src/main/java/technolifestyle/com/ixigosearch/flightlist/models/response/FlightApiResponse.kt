@@ -1,18 +1,17 @@
 package technolifestyle.com.ixigosearch.flightlist.models.response
 
-import com.google.gson.JsonElement
 import com.google.gson.annotations.SerializedName
 
 object FlightModel {
 
     data class FlightApiResponse(
         @SerializedName("appendix")
-        val appendix: JsonElement,
+        val appendix: Appendix,
         @SerializedName("flights")
-        val flightList: List<Flight>
+        val flightInfo: List<FlightInfo>
     )
 
-    data class Flight(
+    data class FlightInfo(
         @SerializedName("originCode")
         val originCode: String,
         @SerializedName("destinationCode")
@@ -29,9 +28,18 @@ object FlightModel {
         val `class`: String
     )
 
+    data class Appendix(
+        @SerializedName("airlines")
+        val airlines: HashMap<String, String>,
+        @SerializedName("airports")
+        val airports: HashMap<String, String>,
+        @SerializedName("providers")
+        val providers: HashMap<String, String>
+    )
+
     data class Fare(
         @SerializedName("providerId")
         val providerId: String,
         @SerializedName("fare")
-        val fare: Int)
+        val price: Int)
 }
