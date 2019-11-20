@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import technolifestyle.com.ixigosearch.ApiConfig.BASE_API_URL
 
 object NetworkUtil {
 
@@ -20,7 +21,7 @@ object NetworkUtil {
             .build()
 
         retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BASE_API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
