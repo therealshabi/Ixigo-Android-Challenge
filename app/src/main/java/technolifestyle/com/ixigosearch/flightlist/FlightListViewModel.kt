@@ -18,14 +18,17 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
     Callback<FlightModel.FlightApiResponse> {
 
     var flightDetails: MutableLiveData<FlightDetails?> = MutableLiveData()
+    var progressBarVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
     fun fetchFlightDetails() {
+        progressBarVisibility.value = true
         NetworkUtil.getApiImplementation(FlightApiInterface::class.java)
             .getFlightDetails()
             .enqueue(this)
     }
 
     override fun onFailure(call: Call<FlightModel.FlightApiResponse>, throwable: Throwable) {
+        progressBarVisibility.value = false
         Timber.e("Error in API request: $throwable")
     }
 
@@ -33,6 +36,7 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
         call: Call<FlightModel.FlightApiResponse>,
         response: Response<FlightModel.FlightApiResponse>
     ) {
+        progressBarVisibility.value = false
         flightDetails.value = parseResponse(response)
     }
 

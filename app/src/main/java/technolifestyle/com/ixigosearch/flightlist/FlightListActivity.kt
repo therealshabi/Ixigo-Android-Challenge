@@ -1,6 +1,7 @@
 package technolifestyle.com.ixigosearch.flightlist
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -27,9 +28,16 @@ class FlightListActivity : AppCompatActivity() {
 
         setupBottomNavigation()
 
-        flightListViewModel.flightDetails.observe(this, Observer {
-            flightListAdapter.addAll(it?.flightList)
-        })
+        flightListViewModel.run {
+            flightDetails.observe(this@FlightListActivity, Observer {
+                flightListAdapter.addAll(it?.flightList)
+            })
+            progressBarVisibility.observe(this@FlightListActivity, Observer { visible ->
+                progressBar.visibility = if (visible) {
+                    View.VISIBLE
+                } else View.GONE
+            })
+        }
     }
 
     private fun setupBottomNavigation() {
