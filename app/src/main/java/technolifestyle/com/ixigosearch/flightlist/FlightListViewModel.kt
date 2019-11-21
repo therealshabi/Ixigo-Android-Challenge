@@ -37,20 +37,36 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
         flightDetails.value = response.body()
     }
 
+    /**
+     * Method to sort the Flight List according to the provider SortType
+     * @param sortType contains the requested sortType
+     */
     fun sortFlightDetails(sortType: HelperUtil.SortType) {
+        val flightInfo = (flightDetails.value as FlightModel.FlightDetails)
         when (sortType) {
             HelperUtil.SortType.CHEAPEST -> {
                 flightDetails.value =
-                    FlightDetails((flightDetails.value as FlightDetails).appendix,
-                        (flightDetails.value as FlightDetails).flightList.sortedBy {
-                            it.bestPrice
+                    FlightModel.FlightDetails(
+                        flightInfo.appendix,
+                        flightInfo.flightList.sortedBy {
+                            it.getBestPrice()
                         })
             }
             HelperUtil.SortType.FASTEST -> {
-
+                flightDetails.value =
+                    FlightModel.FlightDetails(
+                        flightInfo.appendix,
+                        flightInfo.flightList.sortedBy {
+                            it.getDuration()
+                        })
             }
             HelperUtil.SortType.EARLIEST -> {
-
+                flightDetails.value =
+                    FlightModel.FlightDetails(
+                        flightInfo.appendix,
+                        flightInfo.flightList.sortedBy {
+                            it.departureTime
+                        })
             }
         }
     }
