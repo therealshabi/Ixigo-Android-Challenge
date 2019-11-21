@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/ic_plane"
-                    android:textColor="#741152"
+                    android:textColor="@color/colorPrimary"
                     tools:text="Jet Airways" />
 
                 <TextView
