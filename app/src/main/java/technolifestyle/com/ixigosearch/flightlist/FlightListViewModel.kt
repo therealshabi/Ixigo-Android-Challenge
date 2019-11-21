@@ -18,6 +18,9 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
     var flightDetails: MutableLiveData<FlightModel.FlightDetails> = MutableLiveData()
     var progressBarVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
+    /**
+     * Method to fetch FlightDetails from the Mock server by calling REST API for that
+     */
     fun fetchFlightDetails() {
         progressBarVisibility.value = true
         NetworkUtil.getApiImplementation(FlightApiInterface::class.java)
@@ -25,11 +28,17 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
             .enqueue(this)
     }
 
+    /**
+     * Callback to handle failed API requests
+     */
     override fun onFailure(call: Call<FlightModel.FlightDetails>, throwable: Throwable) {
         progressBarVisibility.value = false
         Timber.e("Error in API request: $throwable")
     }
 
+    /**
+     * Callback to handle successful API requests
+     */
     override fun onResponse(
         call: Call<FlightModel.FlightDetails>,
         response: Response<FlightModel.FlightDetails>

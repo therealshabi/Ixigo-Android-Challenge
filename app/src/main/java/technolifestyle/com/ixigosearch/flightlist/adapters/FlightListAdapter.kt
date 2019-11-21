@@ -17,6 +17,10 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
     private lateinit var appendix: FlightModel.Appendix
     private val flightList: ArrayList<FlightModel.Flight> = ArrayList()
 
+    /**
+     * Method to update Flight Data corresponding to the change in data observed by calling activity
+     * @param flightInfo contains the data about the flights as well as its glossaries
+     */
     fun add(flightInfo: FlightModel.FlightDetails) {
         this.appendix = flightInfo.appendix
         val diffResult =
@@ -62,6 +66,7 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                 flightBestPriceTextView.text = holder.itemView.context.getString(
                     R.string.price, getBestPrice()
                 )
+                // Do not repopulate the providerDetails
                 if (providerDetails.childCount > 0) {
                     return
                 }
@@ -78,8 +83,8 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                     providerDetails.addView(providerView)
                 }
             }
+            // This will hide/show the provider details on click of view fare container
             viewFareContainer.setOnClickListener {
-                Timber.d("onclick 1")
                 if (providerDetails.visibility == View.GONE) {
                     viewFareTextView.text = holder.itemView.context.getString(R.string.hide_fares_from_other_providers)
                     expandArrow.animate().rotation(180f).start()

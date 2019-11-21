@@ -3,6 +3,10 @@ package technolifestyle.com.ixigosearch.flightlist.adapters
 import androidx.recyclerview.widget.DiffUtil
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 
+/**
+ * This class is a helper class to DiffUtil providing it required information regarding the
+ * old and new data list, the DiffUtil then calculate the diff using Eugene Myers algorithm using the provided data in this class
+ */
 class FlightListDiffCallback(
     private val oldFlightList: List<FlightModel.Flight>,
     private val updatedFlightList: List<FlightModel.Flight>
