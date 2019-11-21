@@ -28,6 +28,7 @@
         app:backgroundTint="@android:color/black"
         app:contentInsetStart="0dp"
         app:hideOnScroll="true"
+        android:visibility="gone"
         app:itemIconTint="@android:color/white"
         app:itemRippleColor="@android:color/darker_gray"
         app:itemTextColor="@android:color/white"

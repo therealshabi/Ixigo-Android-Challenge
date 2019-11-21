@@ -32,6 +32,7 @@ class FlightListActivity : AppCompatActivity() {
 
         flightListViewModel.run {
             flightDetails.observe(this@FlightListActivity, Observer {
+                bottomNavigation.visibility = View.VISIBLE
                 flightListAdapter.add(it)
                 flightListRecyclerView.smoothScrollToPosition(0)
             })
