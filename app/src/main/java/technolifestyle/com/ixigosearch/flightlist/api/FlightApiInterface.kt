@@ -1,4 +1,4 @@
-package technolifestyle.com.ixigosearch.flightlist
+package technolifestyle.com.ixigosearch.flightlist.api
 
 import retrofit2.Call
 import retrofit2.http.GET

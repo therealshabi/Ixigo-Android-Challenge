@@ -1,4 +1,4 @@
-package technolifestyle.com.ixigosearch.flightlist
+package technolifestyle.com.ixigosearch.flightlist.views
 
 import android.os.Bundle
 import android.view.View
@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_flight_list.*
 import technolifestyle.com.ixigosearch.R
+import technolifestyle.com.ixigosearch.flightlist.FlightListViewModel
+import technolifestyle.com.ixigosearch.flightlist.adapters.FlightListAdapter
 
 class FlightListActivity : AppCompatActivity() {
 
@@ -50,7 +52,8 @@ class FlightListActivity : AppCompatActivity() {
     }
 
     private fun setupFlightRecyclerView() {
-        flightListAdapter = FlightListAdapter()
+        flightListAdapter =
+            FlightListAdapter()
         flightListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@FlightListActivity)
             adapter = flightListAdapter

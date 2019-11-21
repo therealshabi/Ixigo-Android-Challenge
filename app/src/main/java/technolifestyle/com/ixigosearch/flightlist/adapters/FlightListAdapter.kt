@@ -1,4 +1,4 @@
-package technolifestyle.com.ixigosearch.flightlist
+package technolifestyle.com.ixigosearch.flightlist.adapters
 
 import android.view.LayoutInflater
 import android.view.View

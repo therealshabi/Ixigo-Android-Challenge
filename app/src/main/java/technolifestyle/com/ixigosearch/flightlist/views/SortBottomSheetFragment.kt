@@ -1,4 +1,4 @@
-package technolifestyle.com.ixigosearch.flightlist
+package technolifestyle.com.ixigosearch.flightlist.views
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_sort_bottom_sheet.view.*
 import technolifestyle.com.ixigosearch.R
+import technolifestyle.com.ixigosearch.flightlist.FlightListViewModel
 import technolifestyle.com.ixigosearch.utils.HelperUtil
 
 class SortBottomSheetFragment : BottomSheetDialogFragment() {
