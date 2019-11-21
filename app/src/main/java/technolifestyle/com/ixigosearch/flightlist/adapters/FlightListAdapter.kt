@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.provider_item.view.*
 import technolifestyle.com.ixigosearch.R
 import technolifestyle.com.ixigosearch.animation.Animations
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
-import timber.log.Timber
 
 class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolder>() {
 
@@ -94,7 +93,6 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
 
                 val inflater = LayoutInflater.from(holder.itemView.context)
                 fareList.forEach { (providerId, price) ->
-                    Timber.d("ProviderId: $providerId, Price: $price")
                     val providerView =
                         inflater.inflate(R.layout.provider_item, providerDetails, false)
                     providerView.providerNameTextView.text =
