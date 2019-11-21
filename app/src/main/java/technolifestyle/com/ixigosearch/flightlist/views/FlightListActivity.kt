@@ -1,7 +1,9 @@
 package technolifestyle.com.ixigosearch.flightlist.views
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,6 +13,7 @@ import technolifestyle.com.ixigosearch.R
 import technolifestyle.com.ixigosearch.flightlist.FlightListViewModel
 import technolifestyle.com.ixigosearch.flightlist.adapters.FlightListAdapter
 
+
 class FlightListActivity : AppCompatActivity() {
 
     private lateinit var flightListViewModel: FlightListViewModel
@@ -19,6 +22,8 @@ class FlightListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_list)
+
+        setWindowStatusBarColor()
 
         // Obtaining the FlightListViewModel instance
         flightListViewModel = ViewModelProviders.of(this).get(
@@ -49,6 +54,16 @@ class FlightListActivity : AppCompatActivity() {
                 } else View.GONE
             })
         }
+    }
+
+    /**
+     * Method to set status bar background gradient
+     */
+    private fun setWindowStatusBarColor() {
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = Color.TRANSPARENT
+        window.setBackgroundDrawable(getDrawable(R.drawable.toolbar_background))
     }
 
     /**
