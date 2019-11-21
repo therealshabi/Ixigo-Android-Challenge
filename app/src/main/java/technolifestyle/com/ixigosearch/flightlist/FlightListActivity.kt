@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_flight_list.*
 import technolifestyle.com.ixigosearch.R
-import technolifestyle.com.ixigosearch.utils.HelperUtil
-import timber.log.Timber
 
 class FlightListActivity : AppCompatActivity() {
 
@@ -57,9 +55,5 @@ class FlightListActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@FlightListActivity)
             adapter = flightListAdapter
         }
-    }
-
-    fun sortFlightDetails(sortType: HelperUtil.SortType) {
-        flightListViewModel.sortFlightDetails(sortType)
     }
 }
