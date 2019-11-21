@@ -77,18 +77,16 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                     providerDetails.addView(providerView)
                 }
             }
-            mainContainer.setOnClickListener {
-                Timber.d("onclick")
+            viewFareContainer.setOnClickListener {
+                Timber.d("onclick 1")
                 if (providerDetails.visibility == View.GONE) {
-                    Timber.d("Visible")
+                    viewFareTextView.text = holder.itemView.context.getString(R.string.hide_fares_from_other_providers)
+                    expandArrow.animate().rotation(180f).start()
                     providerDetails.visibility = View.VISIBLE
-                    mainContentDivider.visibility = View.INVISIBLE
-                    divider.visibility = View.VISIBLE
                 } else {
-                    Timber.d("InVisible")
+                    viewFareTextView.text = holder.itemView.context.getString(R.string.view_fares_from_other_providers)
+                    expandArrow.animate().rotation(0f).start()
                     providerDetails.visibility = View.GONE
-                    mainContentDivider.visibility = View.VISIBLE
-                    divider.visibility = View.GONE
                 }
             }
         }
