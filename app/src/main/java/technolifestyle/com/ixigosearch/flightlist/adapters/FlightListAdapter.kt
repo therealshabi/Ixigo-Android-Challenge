@@ -66,10 +66,32 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                 flightBestPriceTextView.text = holder.itemView.context.getString(
                     R.string.price, getBestPrice()
                 )
+
+                // This will hide/show the provider details on click of view fare container
+                viewFareContainer.setOnClickListener {
+                    if (providerDetails.visibility == View.GONE) {
+                        viewFareTextView.text =
+                            holder.itemView.context.getString(R.string.hide_fares_from_other_providers)
+                        expandArrow.animate().rotation(180f).start()
+                        Animations.expand(providerDetails)
+                    } else {
+                        viewFareTextView.text =
+                            holder.itemView.context.getString(R.string.view_fares_from_other_providers)
+                        expandArrow.animate().rotation(0f).start()
+                        Animations.collapse(providerDetails)
+                    }
+                }
+
+                if (fareList.isEmpty()) {
+                    viewFareContainer.visibility = View.GONE
+                    return
+                }
+
                 // Do not repopulate the providerDetails
                 if (providerDetails.childCount > 0) {
                     return
                 }
+
                 val inflater = LayoutInflater.from(holder.itemView.context)
                 fareList.forEach { (providerId, price) ->
                     Timber.d("ProviderId: $providerId, Price: $price")
@@ -81,18 +103,6 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                         R.string.price, price
                     )
                     providerDetails.addView(providerView)
-                }
-            }
-            // This will hide/show the provider details on click of view fare container
-            viewFareContainer.setOnClickListener {
-                if (providerDetails.visibility == View.GONE) {
-                    viewFareTextView.text = holder.itemView.context.getString(R.string.hide_fares_from_other_providers)
-                    expandArrow.animate().rotation(180f).start()
-                    Animations.expand(providerDetails)
-                } else {
-                    viewFareTextView.text = holder.itemView.context.getString(R.string.view_fares_from_other_providers)
-                    expandArrow.animate().rotation(0f).start()
-                    Animations.collapse(providerDetails)
                 }
             }
         }
