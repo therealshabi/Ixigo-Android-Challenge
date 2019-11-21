@@ -76,4 +76,10 @@ object FlightModel {
         val providerId: String,
         @SerializedName("fare")
         val price: Int)
+
+    enum class SortType {
+        CHEAPEST,
+        EARLIEST,
+        FASTEST
+    }
 }

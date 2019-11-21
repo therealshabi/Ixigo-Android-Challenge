@@ -25,10 +25,4 @@ object HelperUtil {
         val endDate = Date(timestampEnd)
         return abs(endDate.time - startDate.time)
     }
-
-    enum class SortType {
-        CHEAPEST,
-        EARLIEST,
-        FASTEST
-    }
 }

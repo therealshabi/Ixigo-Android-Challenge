@@ -10,7 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_sort_bottom_sheet.view.*
 import technolifestyle.com.ixigosearch.R
 import technolifestyle.com.ixigosearch.flightlist.FlightListViewModel
-import technolifestyle.com.ixigosearch.utils.HelperUtil
+import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 
 class SortBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -34,19 +34,19 @@ class SortBottomSheetFragment : BottomSheetDialogFragment() {
             cheapestSortButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     dismiss()
-                    flightListViewModel.sortFlightDetails(HelperUtil.SortType.CHEAPEST)
+                    flightListViewModel.sortFlightDetails(FlightModel.SortType.CHEAPEST)
                 }
             }
             earliestSortButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     dismiss()
-                    flightListViewModel.sortFlightDetails(HelperUtil.SortType.EARLIEST)
+                    flightListViewModel.sortFlightDetails(FlightModel.SortType.EARLIEST)
                 }
             }
             fastestSortButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     dismiss()
-                    flightListViewModel.sortFlightDetails(HelperUtil.SortType.FASTEST)
+                    flightListViewModel.sortFlightDetails(FlightModel.SortType.FASTEST)
                 }
             }
         }

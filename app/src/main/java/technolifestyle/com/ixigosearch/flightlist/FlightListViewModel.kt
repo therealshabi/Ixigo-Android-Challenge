@@ -8,7 +8,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import technolifestyle.com.ixigosearch.flightlist.api.FlightApiInterface
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
-import technolifestyle.com.ixigosearch.utils.HelperUtil
 import technolifestyle.com.ixigosearch.utils.NetworkUtil
 import timber.log.Timber
 
@@ -51,10 +50,10 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
      * Method to sort the Flight List according to the provider SortType
      * @param sortType contains the requested sortType
      */
-    fun sortFlightDetails(sortType: HelperUtil.SortType) {
+    fun sortFlightDetails(sortType: FlightModel.SortType) {
         val flightInfo = (flightDetails.value as FlightModel.FlightDetails)
         when (sortType) {
-            HelperUtil.SortType.CHEAPEST -> {
+            FlightModel.SortType.CHEAPEST -> {
                 flightDetails.value =
                     FlightModel.FlightDetails(
                         flightInfo.appendix,
@@ -62,7 +61,7 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
                             it.getBestPrice()
                         })
             }
-            HelperUtil.SortType.FASTEST -> {
+            FlightModel.SortType.FASTEST -> {
                 flightDetails.value =
                     FlightModel.FlightDetails(
                         flightInfo.appendix,
@@ -70,7 +69,7 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
                             it.getDuration()
                         })
             }
-            HelperUtil.SortType.EARLIEST -> {
+            FlightModel.SortType.EARLIEST -> {
                 flightDetails.value =
                     FlightModel.FlightDetails(
                         flightInfo.appendix,
