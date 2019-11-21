@@ -10,5 +10,5 @@
     <string name="sort_menu_title">SORT</string>
 
     <string name="view_fares_from_other_providers">View Fare from other Providers</string>
-    <string name="hide_fares_from_other_providers">Hide Fares from other Providers</string>
+    <string name="hide_fares_from_other_providers">Hide Fare from other Providers</string>
 </resources>
