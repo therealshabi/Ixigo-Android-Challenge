@@ -30,9 +30,6 @@ class FlightListActivity : AppCompatActivity() {
             FlightListViewModel::class.java
         )
 
-        // Calling the view model fetchFlightDetails to start an API request to the Mock server
-        flightListViewModel.fetchFlightDetails()
-
         setupFlightRecyclerView()
 
         setupBottomNavigation()

@@ -17,6 +17,11 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
     var flightDetails: MutableLiveData<FlightModel.FlightDetails> = MutableLiveData()
     var progressBarVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
+    init {
+        // Calling the fetchFlightDetails to start an API request to the Mock server
+        fetchFlightDetails()
+    }
+
     /**
      * Method to fetch FlightDetails from the Mock server by calling REST API for that
      */
