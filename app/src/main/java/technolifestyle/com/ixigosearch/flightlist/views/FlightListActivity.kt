@@ -33,6 +33,7 @@ class FlightListActivity : AppCompatActivity() {
         flightListViewModel.run {
             flightDetails.observe(this@FlightListActivity, Observer {
                 flightListAdapter.add(it)
+                flightListRecyclerView.smoothScrollToPosition(0)
             })
             progressBarVisibility.observe(this@FlightListActivity, Observer { visible ->
                 progressBar.visibility = if (visible) {
