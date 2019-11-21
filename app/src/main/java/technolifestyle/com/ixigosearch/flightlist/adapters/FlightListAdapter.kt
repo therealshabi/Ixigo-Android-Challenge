@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.flight_item.view.*
 import kotlinx.android.synthetic.main.provider_item.view.*
 import technolifestyle.com.ixigosearch.R
+import technolifestyle.com.ixigosearch.animation.Animations
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 import timber.log.Timber
 
@@ -82,11 +83,11 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
                 if (providerDetails.visibility == View.GONE) {
                     viewFareTextView.text = holder.itemView.context.getString(R.string.hide_fares_from_other_providers)
                     expandArrow.animate().rotation(180f).start()
-                    providerDetails.visibility = View.VISIBLE
+                    Animations.expand(providerDetails)
                 } else {
                     viewFareTextView.text = holder.itemView.context.getString(R.string.view_fares_from_other_providers)
                     expandArrow.animate().rotation(0f).start()
-                    providerDetails.visibility = View.GONE
+                    Animations.collapse(providerDetails)
                 }
             }
         }
