@@ -6,19 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import technolifestyle.com.ixigosearch.flightlist.models.Flight
-import technolifestyle.com.ixigosearch.flightlist.models.FlightDetails
-import technolifestyle.com.ixigosearch.flightlist.models.response.FlightModel
+import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 import technolifestyle.com.ixigosearch.utils.HelperUtil
-import technolifestyle.com.ixigosearch.utils.HelperUtil.getDuration
-import technolifestyle.com.ixigosearch.utils.HelperUtil.getTime
 import technolifestyle.com.ixigosearch.utils.NetworkUtil
 import timber.log.Timber
 
 class FlightListViewModel(application: Application) : AndroidViewModel(application),
-    Callback<FlightModel.FlightApiResponse> {
+    Callback<FlightModel.FlightDetails> {
 
-    var flightDetails: MutableLiveData<FlightDetails?> = MutableLiveData()
+    var flightDetails: MutableLiveData<FlightModel.FlightDetails> = MutableLiveData()
     var progressBarVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
     fun fetchFlightDetails() {
@@ -28,56 +24,17 @@ class FlightListViewModel(application: Application) : AndroidViewModel(applicati
             .enqueue(this)
     }
 
-    override fun onFailure(call: Call<FlightModel.FlightApiResponse>, throwable: Throwable) {
+    override fun onFailure(call: Call<FlightModel.FlightDetails>, throwable: Throwable) {
         progressBarVisibility.value = false
         Timber.e("Error in API request: $throwable")
     }
 
     override fun onResponse(
-        call: Call<FlightModel.FlightApiResponse>,
-        response: Response<FlightModel.FlightApiResponse>
+        call: Call<FlightModel.FlightDetails>,
+        response: Response<FlightModel.FlightDetails>
     ) {
         progressBarVisibility.value = false
-        flightDetails.value = parseResponse(response)
-    }
-
-    private fun parseResponse(response: Response<FlightModel.FlightApiResponse>): FlightDetails? {
-        var flightDetails: FlightDetails? = null
-        response.body()?.let {
-            val flightData = getFlightData(it.flightInfo, it.appendix)
-            flightDetails = FlightDetails(it.appendix, flightData)
-        }
-        return flightDetails
-    }
-
-    private fun getFlightData(
-        flightInfo: List<FlightModel.FlightInfo>, appendix: FlightModel.Appendix
-    ): List<Flight> {
-        val flightList: ArrayList<Flight> = ArrayList()
-        flightInfo.forEach {
-            val fareMap: HashMap<String, Int> = HashMap()
-            var bestPrice: Int = Integer.MAX_VALUE
-            it.fareList.forEach { fare ->
-                fareMap[appendix.providers[fare.providerId]!!] = fare.price
-                if (fare.price < bestPrice) {
-                    bestPrice = fare.price
-                }
-            }
-            flightList.add(
-                Flight(
-                    it.originCode,
-                    it.destinationCode,
-                    getTime(it.departureTime),
-                    getTime(it.arrivalTime),
-                    getDuration(it.departureTime, it.arrivalTime),
-                    fareMap,
-                    appendix.airlines[it.airlineCode]!!,
-                    it.`class`,
-                    bestPrice
-                )
-            )
-        }
-        return flightList
+        flightDetails.value = response.body()
     }
 
     fun sortFlightDetails(sortType: HelperUtil.SortType) {

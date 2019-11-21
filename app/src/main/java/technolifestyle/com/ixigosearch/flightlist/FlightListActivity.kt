@@ -30,7 +30,7 @@ class FlightListActivity : AppCompatActivity() {
 
         flightListViewModel.run {
             flightDetails.observe(this@FlightListActivity, Observer {
-                flightListAdapter.addAll(it?.flightList)
+                flightListAdapter.add(it)
             })
             progressBarVisibility.observe(this@FlightListActivity, Observer { visible ->
                 progressBar.visibility = if (visible) {
