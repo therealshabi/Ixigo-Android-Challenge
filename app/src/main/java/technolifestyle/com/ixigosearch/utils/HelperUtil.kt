@@ -6,11 +6,20 @@ import kotlin.math.abs
 
 object HelperUtil {
 
+    /**
+     * Method to get time in 24 hour format for a given timestamp
+     * @param timestamp the provide timestamp
+     */
     fun getTime(timestamp: Long): String {
         val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
         return formatter.format(Date(timestamp))
     }
 
+    /**
+     * Method to get journey duration in hour and minute format
+     * @param timestampStart the start timestamp
+     * @param timestampEnd the end timestamp
+     */
     fun getFormattedDuration(timestampStart: Long, timestampEnd: Long): String {
         val startDate = Date(timestampStart)
         val endDate = Date(timestampEnd)
@@ -20,6 +29,11 @@ object HelperUtil {
         return "${diffHours}h ${diffMinutes}m"
     }
 
+    /**
+     * Method to get journey duration in timestamp format
+     * @param timestampStart the start timestamp
+     * @param timestampEnd the end timestamp
+     */
     fun getDuration(timestampStart: Long, timestampEnd: Long): Long {
         val startDate = Date(timestampStart)
         val endDate = Date(timestampEnd)

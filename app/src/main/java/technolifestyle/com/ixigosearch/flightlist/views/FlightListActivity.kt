@@ -20,10 +20,12 @@ class FlightListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_list)
 
+        // Obtaining the FlightListViewModel instance
         flightListViewModel = ViewModelProviders.of(this).get(
             FlightListViewModel::class.java
         )
 
+        // Calling the view model fetchFlightDetails to start an API request to the Mock server
         flightListViewModel.fetchFlightDetails()
 
         setupFlightRecyclerView()
@@ -31,11 +33,16 @@ class FlightListActivity : AppCompatActivity() {
         setupBottomNavigation()
 
         flightListViewModel.run {
+            // Observes on Live data of flightDetails present in FlightListViewModel and update accordingly
             flightDetails.observe(this@FlightListActivity, Observer {
                 bottomNavigation.visibility = View.VISIBLE
                 flightListAdapter.add(it)
                 flightListRecyclerView.smoothScrollToPosition(0)
             })
+
+            /* Observes on Live data of progressBarVisibility present in FlightListViewModel
+             set the progress bar visibility accordingly
+             */
             progressBarVisibility.observe(this@FlightListActivity, Observer { visible ->
                 progressBar.visibility = if (visible) {
                     View.VISIBLE
@@ -44,6 +51,9 @@ class FlightListActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Method to setup bottom navigation bar and its corresponding action
+     */
     private fun setupBottomNavigation() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -53,6 +63,9 @@ class FlightListActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Method to setup FlightRecyclerView along with its layout manager and adapter
+     */
     private fun setupFlightRecyclerView() {
         flightListAdapter =
             FlightListAdapter()

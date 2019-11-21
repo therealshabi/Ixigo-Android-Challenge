@@ -6,6 +6,9 @@ import technolifestyle.com.ixigosearch.ApiConfig.API_VERSION
 import technolifestyle.com.ixigosearch.ApiConfig.SAMPLE_FLIGHT_ENDPOINT
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 
+/**
+ * Interface used by Retrofit for network requests, this interface provides Endpoints and its resultant expected Response
+ */
 interface FlightApiInterface {
 
     @GET("/${API_VERSION}/${SAMPLE_FLIGHT_ENDPOINT}")

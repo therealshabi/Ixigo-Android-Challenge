@@ -12,6 +12,9 @@ import technolifestyle.com.ixigosearch.R
 import technolifestyle.com.ixigosearch.flightlist.FlightListViewModel
 import technolifestyle.com.ixigosearch.flightlist.models.FlightModel
 
+/**
+ * The Bottom Sheet dialog fragment which appears when sort button is clicked on FlightListActivity
+ */
 class SortBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var dialogView: View
@@ -30,6 +33,7 @@ class SortBottomSheetFragment : BottomSheetDialogFragment() {
         activity?.let {
             flightListViewModel = ViewModelProviders.of(it).get(FlightListViewModel::class.java)
         }
+        // Calls sort function in the view model, corresponding to the sort type selected
         dialogView.apply {
             cheapestSortButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {

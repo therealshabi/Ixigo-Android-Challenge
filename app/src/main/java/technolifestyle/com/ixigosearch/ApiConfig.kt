@@ -1,5 +1,8 @@
 package technolifestyle.com.ixigosearch
 
+/**
+ * Singleton class to hold API related info
+ */
 object ApiConfig {
     const val BASE_API_URL = "http://www.mocky.io"
     const val API_VERSION = "v2"

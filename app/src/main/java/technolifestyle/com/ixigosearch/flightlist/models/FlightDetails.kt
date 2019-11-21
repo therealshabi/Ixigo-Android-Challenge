@@ -6,6 +6,7 @@ import technolifestyle.com.ixigosearch.utils.HelperUtil
 
 object FlightModel {
 
+    // The data class to be parsed with Gson
     data class FlightDetails(
         @SerializedName("appendix")
         val appendix: Appendix,
@@ -77,6 +78,9 @@ object FlightModel {
         @SerializedName("fare")
         val price: Int)
 
+    /**
+     * Enum defining different Sort types
+     */
     enum class SortType {
         CHEAPEST,
         EARLIEST,
