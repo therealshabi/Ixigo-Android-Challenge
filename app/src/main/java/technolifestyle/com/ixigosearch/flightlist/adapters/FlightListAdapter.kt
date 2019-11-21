@@ -3,6 +3,7 @@ package technolifestyle.com.ixigosearch.flightlist.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.flight_item.view.*
 import kotlinx.android.synthetic.main.provider_item.view.*
@@ -17,9 +18,11 @@ class FlightListAdapter : RecyclerView.Adapter<FlightListAdapter.FlightViewHolde
 
     fun add(flightInfo: FlightModel.FlightDetails) {
         this.appendix = flightInfo.appendix
+        val diffResult =
+            DiffUtil.calculateDiff(FlightListDiffCallback(this.flightList, flightInfo.flightList))
         flightList.clear()
         flightList.addAll(flightInfo.flightList)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightViewHolder {
