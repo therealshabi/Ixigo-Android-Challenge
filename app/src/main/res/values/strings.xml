@@ -11,4 +11,5 @@
 
     <string name="view_fares_from_other_providers">View Fare from other Providers</string>
     <string name="hide_fares_from_other_providers">Hide Fare from other Providers</string>
+    <string name="del_mum_dummy_text">DEL ➝ MUM</string>
 </resources>
