@@ -24,9 +24,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintHorizontal_weight="1.5"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@id/mainContentDivider"
                 app:layout_constraintEnd_toStartOf="@id/mainDetailContainer"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,12 +40,13 @@
 
                 <TextView
                     android:id="@+id/flightNameTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/ic_plane"
                     android:textColor="#741152"
-                    tools:text="Spicejet" />
+                    tools:text="Jet Airways" />
 
                 <TextView
                     android:id="@+id/flightClassTextView"
