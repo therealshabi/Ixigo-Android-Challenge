@@ -27,7 +27,7 @@
                 app:layout_constraintHorizontal_weight="1.5"
                 android:orientation="vertical"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@id/mainContentDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/mainDetailContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="UseCompoundDrawables">
@@ -70,7 +70,7 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="4dp"
-                app:layout_constraintBottom_toTopOf="@id/mainContentDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/flightBestPriceTextView"
                 app:layout_constraintStart_toEndOf="@id/flightImageContainer"
                 app:layout_constraintTop_toTopOf="parent">
@@ -115,21 +115,38 @@
                 app:layout_constraintHorizontal_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/mainContentDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="₹5696" />
-
-            <View
-                android:id="@+id/mainContentDivider"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#757575"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/viewFareContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/expandArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+            <TextView
+                android:id="@+id/viewFareTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/view_fares_from_other_providers" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/providerDetails"
@@ -143,9 +160,6 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="#757575"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:visibility="visible" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
